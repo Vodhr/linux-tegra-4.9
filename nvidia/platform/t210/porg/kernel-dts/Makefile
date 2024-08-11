@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0000-p3449-0000-a02.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0002-p3449-0000-a02.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0000-p3449-0000-b00.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0002-p3449-0000-b00.dtb
+dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0002-star-0000.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0000-as-p3448-0003.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0000-p3449-0000-b00-hdmi-dsi.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-0000-p3449-0000-a02-hdmi-dsi.dtb
@@ -34,7 +35,8 @@ dtbo-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-common-imx219.dtbo
 dtbo-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-all-p3449-0000-camera-imx219-dual.dtbo
 dtbo-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-all-p3449-0000-camera-imx477-dual.dtbo
 dtbo-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-all-p3449-0000-camera-imx477-imx219.dtbo
-
+dtbo-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-all-p3449-0000-camera-imx477-triple.dtbo
+dtbo-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3448-all-p3449-0000-camera-imx477-dual-imx219-single.dtbo
 ifneq ($(dtb-y),)
 dtb-y := $(addprefix $(makefile-path)/,$(dtb-y))
 endif
