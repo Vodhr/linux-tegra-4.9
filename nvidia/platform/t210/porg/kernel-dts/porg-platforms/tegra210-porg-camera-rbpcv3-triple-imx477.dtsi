@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2021, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "tegra210-camera-rbpcv3-triple-imx477.dtsi"
+
+#define CAM0_PWDN		TEGRA_GPIO(S, 7)
+#define CAM1_PWDN		TEGRA_GPIO(T, 0)
+#define CAM2_PWDN		TEGRA_GPIO(I, 2)
+#define CAM_I2C_MUX0	TEGRA_GPIO(H, 7)
+#define CAM_I2C_MUX1	TEGRA_GPIO(I, 0)
+
+/ {
+	cam_i2cmux {
+		compatible = "i2c-mux-gpio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		mux-gpios = <&gpio CAM_I2C_MUX0 GPIO_ACTIVE_HIGH>, <&gpio CAM_I2C_MUX1 GPIO_ACTIVE_HIGH>;
+		i2c-parent = <&i2c7>;
+		i2c@0 {
+			reg = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			rbpcv3_imx477_a@1a {
+				status = "okay";
+				reset-gpios = <&gpio CAM0_PWDN GPIO_ACTIVE_HIGH>;
+			};
+		};
+		i2c@1 {
+			reg = <1>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			rbpcv3_imx477_e@1a {
+				status = "okay";
+				reset-gpios = <&gpio CAM1_PWDN GPIO_ACTIVE_HIGH>;
+			};
+		};
+		i2c@2 {
+			reg = <2>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			rbpcv3_imx477_i@1a {
+				status = "okay";
+				reset-gpios = <&gpio CAM2_PWDN GPIO_ACTIVE_HIGH>;
+			};
+		};
+	};
+
+	gpio@6000d000 {
+		camera-control-output-low {
+			gpio-hog;
+			output-low;
+			gpios = < CAM0_PWDN 0  CAM1_PWDN 0 CAM2_PWDN 0>;
+			label = "cam0-pwdn", "cam1-pwdn", "cam2-pwdn";
+		};
+	};
+};
